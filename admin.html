@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="fade-in">
+    <h2 class="fw-800 mb-4"><i class="fas fa-user-shield me-2" style="color:var(--accent)"></i>Admin Dashboard</h2>
+    
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:rgba(59,130,246,0.1);color:var(--accent);"><i class="fas fa-search"></i></div>
+                <h3 class="fw-800">{{ total_scans }}</h3>
+                <small class="text-muted">Total Scans</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:rgba(239,68,68,0.1);color:var(--danger);"><i class="fas fa-bug"></i></div>
+                <h3 class="fw-800">{{ phish_count }}</h3>
+                <small class="text-muted">Phishing Detected</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:rgba(16,185,129,0.1);color:var(--success);"><i class="fas fa-check"></i></div>
+                <h3 class="fw-800">{{ legit_count }}</h3>
+                <small class="text-muted">Legitimate</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon mb-2" style="background:rgba(245,158,11,0.1);color:var(--warning);"><i class="fas fa-flag"></i></div>
+                <h3 class="fw-800">{{ total_complaints }}</h3>
+                <small class="text-muted">Complaints</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-custom p-4 mb-4">
+        <h4 class="fw-700 mb-3">Recent Detections</h4>
+        <div class="table-responsive">
+            <table class="table table-custom mb-0">
+                <thead><tr><th>User</th><th>URL</th><th>Result</th><th>Confidence</th><th>Date</th></tr></thead>
+                <tbody>
+                {% for r in recent_detections %}
+                <tr>
+                    <td>{{ r['username'] }}</td>
+                    <td><code style="word-break:break-all;">{{ r['url'][:60] }}</code></td>
+                    <td><span class="badge rounded-pill {{ 'badge-phishing' if r['prediction']=='Phishing' else 'badge-legitimate' }}">{{ r['prediction'] }}</span></td>
+                    <td>{{ r['confidence'] }}%</td>
+                    <td><small>{{ r['created_at'] }}</small></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-custom p-4">
+        <h4 class="fw-700 mb-3">Complaints</h4>
+        {% if complaints %}
+        <div class="table-responsive">
+            <table class="table table-custom mb-0">
+                <thead><tr><th>User</th><th>URL</th><th>Email</th><th>Description</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody>
+                {% for c in complaints %}
+                <tr>
+                    <td>{{ c['username'] }}</td>
+                    <td><code style="word-break:break-all;">{{ c['url'][:50] }}</code></td>
+                    <td>{{ c['email'] }}</td>
+                    <td>{{ c['description'][:60] }}</td>
+                    <td><span class="badge bg-warning">{{ c['status'] }}</span></td>
+                    <td><small>{{ c['created_at'] }}</small></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted">No complaints yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

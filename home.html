@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center fade-in">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h1 class="fw-800" style="font-size: 2.5rem;">
+                <i class="fas fa-shield-halved me-2" style="color:var(--accent)"></i>URL Scanner
+            </h1>
+            <p class="text-muted fs-5">Enter a URL to analyze it for phishing threats using AI</p>
+        </div>
+        <div class="card-custom p-4">
+            <form method="POST" action="{{ url_for('predict') }}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="border-radius:12px 0 0 12px; border: 2px solid var(--border); border-right:none; background:#f8fafc;">
+                        <i class="fas fa-globe" style="color:var(--accent)"></i>
+                    </span>
+                    <input type="text" name="url" class="form-control input-custom" style="border-radius: 0 12px 12px 0; border-left:none;"
+                           placeholder="https://example.com" required>
+                </div>
+                <button type="submit" class="btn btn-accent w-100 py-3 fs-5">
+                    <i class="fas fa-magnifying-glass me-2"></i>Analyze URL
+                </button>
+            </form>
+        </div>
+        <div class="row mt-4 g-3">
+            <div class="col-md-4">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mx-auto mb-2" style="background:rgba(59,130,246,0.1); color:var(--accent);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h6 class="fw-600">6 AI Models</h6>
+                    <small class="text-muted">Ensemble voting</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mx-auto mb-2" style="background:rgba(16,185,129,0.1); color:var(--success);">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+                    <h6 class="fw-600">30+ Features</h6>
+                    <small class="text-muted">Deep URL analysis</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card text-center">
+                    <div class="stat-icon mx-auto mb-2" style="background:rgba(245,158,11,0.1); color:var(--warning);">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h6 class="fw-600">Real-time</h6>
+                    <small class="text-muted">Instant detection</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

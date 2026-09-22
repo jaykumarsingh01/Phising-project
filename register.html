@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container" style="min-height: calc(100vh - 80px);">
+    <div class="auth-card fade-in">
+        <div class="auth-header">
+            <i class="fas fa-user-plus fa-3x mb-3"></i>
+            <h2 class="mb-1">Create Account</h2>
+            <p class="mb-0 opacity-75">Join PhishGuard AI</p>
+        </div>
+        <div class="p-4">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control input-custom" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control input-custom" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control input-custom" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control input-custom" required>
+                </div>
+                <button type="submit" class="btn btn-accent w-100 mb-3"><i class="fas fa-user-plus me-2"></i>Register</button>
+            </form>
+            <div class="text-center">
+                <a href="{{ url_for('login') }}" class="text-decoration-none" style="color:var(--accent)">Already have an account? Sign In</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

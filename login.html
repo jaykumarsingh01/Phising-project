@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container" style="min-height: calc(100vh - 80px);">
+    <div class="auth-card fade-in">
+        <div class="auth-header">
+            <i class="fas fa-shield-halved fa-3x mb-3"></i>
+            <h2 class="mb-1">PhishGuard AI</h2>
+            <p class="mb-0 opacity-75">AI-Powered Phishing Detection</p>
+        </div>
+        <div class="p-4">
+            <h5 class="mb-3 text-center">Sign In</h5>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label fw-500">Username</label>
+                    <input type="text" name="username" class="form-control input-custom" placeholder="Enter username" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-500">Password</label>
+                    <input type="password" name="password" class="form-control input-custom" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-accent w-100 mb-3">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </button>
+            </form>
+            <div class="text-center">
+                <a href="{{ url_for('forgot_password') }}" class="text-decoration-none" style="color:var(--accent)">Forgot Password?</a>
+                <span class="mx-2 text-muted">|</span>
+                <a href="{{ url_for('register') }}" class="text-decoration-none" style="color:var(--accent)">Create Account</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
